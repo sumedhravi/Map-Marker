@@ -26,4 +26,8 @@ class CustomAnnotation: NSObject, MGLAnnotation{
         
         }
     
+    func shouldChangeRadius(radius: Double){
+        
+    }
+    
 }

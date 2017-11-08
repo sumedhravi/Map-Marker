@@ -14,7 +14,8 @@ class ViewController: UIViewController,MGLMapViewDelegate, UIGestureRecognizerDe
     
     var mapView : MGLMapView?
     var annotation : CustomAnnotation?
-    let initialRadius = 100.0
+    var annotationView : CustomAnnotationView?
+    var radius = 250.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,17 +66,17 @@ class ViewController: UIViewController,MGLMapViewDelegate, UIGestureRecognizerDe
         let tapPoint = mapView?.convert(point, toCoordinateFrom: self.view)
 
         guard let annotationPoint = tapPoint else{return}
-        if (annotation == nil){
+        if (annotation == nil) {
+            
             annotation = CustomAnnotation(coordinate: annotationPoint, title: "Custom Point Annotation", subtitle: nil)
             annotation?.reuseIdentifier = "CustomAnnotation"
            
-            
         }
         else{
             mapView?.removeAnnotation(annotation!)
         }
         annotation?.coordinate = annotationPoint
-        self.mapView?.addAnnotation(self.annotation!)
+        self.mapView?.addAnnotation(annotation!)
 //        DispatchQueue.main.async{
 //        self.mapView?.addAnnotation(self.annotation!)
 //        }
@@ -95,24 +96,34 @@ class ViewController: UIViewController,MGLMapViewDelegate, UIGestureRecognizerDe
                 return annotationView
             } else {
                 // Create a new annotation image.
-                return CustomAnnotationView(annotation: pointAnnotation, reuseIdentifier: reuseIdentifier, radius: initialRadius)
+                let radiusPoints = mapView.metersPerPoint(atLatitude: annotation.coordinate.latitude)
+                annotationView = CustomAnnotationView(annotation: pointAnnotation, reuseIdentifier: reuseIdentifier, radius: radius/radiusPoints)
+                return annotationView
+                
             }
         }
+        
         return nil
     }
     
     func mapViewRegionIsChanging(_ mapView: MGLMapView) {
-        let zoomLevel = mapView.maximumZoomLevel
-        
-        let zoomScale = mapView.visible / mapView.frame.size
-        let zoomExponent = log2(zoomScale);
-        zoomLevel = Int(mapView.maximumZoomLevel - ceil(zoomExponent));
-        annotation.
+        if let pointAnnotationView = annotationView {
+            let radiusPoints = pointAnnotationView.radiusOfCircle / mapView.metersPerPoint(atLatitude: (annotation?.coordinate.latitude)!)
+            var newRadius = radiusPoints
+//            newRadius = min(500,newRadius)
+//            newRadius = max(20,newRadius)
+            pointAnnotationView.scale(newRadius: radiusPoints)
+//            pointAnnotationView.transform.scaledBy(x: CGFloat(radiusPoints/pointAnnotationView.radiusOfCircle), y: CGFloat(radiusPoints/pointAnnotationView.radiusOfCircle))
+            pointAnnotationView.scale(newRadius: radiusPoints)
+            
+        }
+    
     }
     
-    
-    
-    
+    func mapView(_ mapView: MGLMapView, fillColorForPolygonAnnotation annotation: MGLPolygon) -> UIColor {
+        <#code#>
+    }
    
+    
 }
 

@@ -20,7 +20,7 @@ class CustomAnnotationView: MGLAnnotationView {
     */
     let lineWidth = 3.0
     let minRadius = 20.0
-    let maxRadius = UIScreen.main.bounds.width/4
+    let maxRadius = 500
     var radiusOfCircle = 0.0
     var inResizeArea : Bool = true
     
@@ -55,6 +55,7 @@ class CustomAnnotationView: MGLAnnotationView {
         UIColor.black.setStroke()
         path.fill()
         path.stroke()
+        
     }
     
     func initGestureRecognizer(){
@@ -79,18 +80,24 @@ class CustomAnnotationView: MGLAnnotationView {
             newRadius = min(Double(maxRadius),newRadius)
             newRadius = max(minRadius,newRadius)
             print("New radius:\(newRadius)")
-            let scale = newRadius/radiusOfCircle
-            transform = transform.scaledBy(x: CGFloat(scale), y: CGFloat(scale))
+            scale(newRadius: newRadius)
             pan.setTranslation(CGPoint.zero, in: self)
-            radiusOfCircle = newRadius
-            print("Radius:\(radiusOfCircle)")
+            
         default: break
             
             
         }
-    
-    
     }
+        
+    func scale(newRadius: Double){
+            let scale = newRadius/radiusOfCircle
+            transform = transform.scaledBy(x: CGFloat(scale), y: CGFloat(scale))
+        radiusOfCircle = newRadius
+        print("Radius:\(radiusOfCircle)")
+        
+        }
+    
+    
     
     
 

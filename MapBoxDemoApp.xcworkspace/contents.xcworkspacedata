@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:"
+      name = "">
+      <FileRef
+         location = "group:Default-568h@2x.png">
+      </FileRef>
+      <Group
+         location = "group:MapBoxDemoApp"
+         name = "MapBoxDemoApp">
+         <FileRef
+            location = "group:AppDelegate 19-41-00-814.swift">
+         </FileRef>
+         <Group
+            location = "group:Assets 19-41-00-751.xcassets"
+            name = "Assets 19-41-00-751.xcassets">
+            <Group
+               location = "group:AppIcon.appiconset"
+               name = "AppIcon.appiconset">
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+         </Group>
+         <Group
+            location = "group:Base.lproj"
+            name = "Base.lproj">
+         </Group>
+         <FileRef
+            location = "group:CustomAnnotation.swift">
+         </FileRef>
+         <FileRef
+            location = "group:CustomAnnotationView.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Info.plist">
+         </FileRef>
+         <FileRef
+            location = "group:LaunchScreen 19-41-00-886.storyboard">
+         </FileRef>
+         <FileRef
+            location = "group:Main 19-41-00-831.storyboard">
+         </FileRef>
+         <FileRef
+            location = "group:ViewController 19-41-00-850.swift">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:MapBoxDemoApp.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:MapBoxDemoApp.xcworkspace">
+      </FileRef>
+      <FileRef
+         location = "group:Podfile">
+      </FileRef>
+      <FileRef
+         location = "group:Podfile.lock">
+      </FileRef>
+      <Group
+         location = "group:Pods"
+         name = "Pods">
+         <Group
+            location = "group:Headers"
+            name = "Headers">
+         </Group>
+         <Group
+            location = "group:Local Podspecs"
+            name = "Local Podspecs">
+         </Group>
+      </Group>
+   </Group>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
